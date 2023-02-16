@@ -1,0 +1,97 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage[none]{hyphenat}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{caption} 
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{amsmath}   % for having text in math mode
+\usepackage{extarrows} % for Row operations arrows
+\usepackage{listings}
+\lstset{
+  frame=single,
+  breaklines=true
+}
+  
+%Following 2 lines were added to remove the blank page at the beginning
+\usepackage{atbegshi}% http://ctan.org/pkg/atbegshi
+\AtBeginDocument{\AtBeginShipoutNext{\AtBeginShipoutDiscard}}
+
+
+%New macro definitions
+\newcommand{\mydet}[1]{\ensuremath{\begin{vmatrix}#1\end{vmatrix}}}
+\providecommand{\brak}[1]{\ensuremath{\left(#1\right)}}
+\providecommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\solution}{\noindent \textbf{Solution: }}
+\newcommand{\myvec}[1]{\ensuremath{\begin{pmatrix}#1\end{pmatrix}}}
+\let\vec\mathbf
+
+\begin{document}
+
+\begin{center}
+\title{\textbf{Vector Algebra}}
+\date{\vspace{-5ex}} %Not to print date automatically
+\maketitle
+\end{center}
+\setcounter{page}{1}
+
+\section{12$^{th}$ Maths - Chapter 10}
+This is Problem-8 from Miscellaneous Exercise
+\begin{enumerate}
+\item Show that the points A$(1, – 2, – 8)$, B$(5, 0, – 2)$ and C$(11, 3, 7)$ are collinear, and
+find the ratio in which B divides AC.\\
+\solution 
+ We know that points $\vec{A}, \vec{B} \text{ and } \vec{C}$ are collinear, if
+\begin{align}
+  \label{eq:1}
+\text{rank}\myvec{ 
+	\vec{A-B} \\ \vec{A-C}
+}    &= \text{ } 1 \\   
+\myvec{ 
+\vec{A-B} \\
+\vec{A-C}
+}    &=   		\myvec{
+        		4 & 2 & 6\\
+        		10 & 5 & 15 \\
+}
+\end{align}
+Performing a sequence of row reduction operations \\
+\begin{align}
+\xleftrightarrow[{R_1\rightarrow \frac{10}{4}R_1}]{{R_2\rightarrow R_2-R_1}}  \myvec{
+  10 & 5 & 15 \\
+  0 & 0 & 0 \\
+}    \\
+\xleftrightarrow[]{{R_1\rightarrow \frac{4}{10}R_1}}  \myvec{
+  4 & 2 & 6\\
+  0 & 0 & 0\\
+}
+\end{align}
+Therefore, the rank of the matrix is 1. Hence, referring to equation \ref{eq:1}, the points are collinear as the rank of the matrix is equal to 1.\\ \\
+
+Let us assume $B$ divides $AC$ in $k:1$ ratio. Therefore, we get:
+\begin{align}
+    \implies \Vec{B} &= \frac{k\Vec{C}+\Vec{A}}{k+1}\\
+    \label{eq:5}
+    &= \frac{\myvec{11k \\ 3k \\ 7k} + \myvec{1 \\ -2 \\ -8}}{k+1}
+    \label{eq:6}
+\end{align}
+Substituting $\Vec{B} = \myvec{5 \\ 0 \\ -2}$
+\begin{align}
+    \implies \frac{\myvec{11k \\ 3k \\ 7k} + \myvec{1 \\ -2 \\ -8}}{k+1} &= \myvec{5 \\ 0 \\ -2}\\
+    \label{eq:7}
+     \implies \myvec{11k+1 \\ 3k-2 \\ 7k-8} &= \myvec{5k+5 \\ 0 \\ -2k-2}\\
+    \label{eq:8}
+    \implies k &= \frac{2}{3}
+    \label{eq:9}
+\end{align}
+
+$B$ divides $AC$ in 2:3 ratio.
+
+\end{enumerate}
+
+\end{document}
+
