@@ -1,0 +1,85 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage[none]{hyphenat}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{caption} 
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{amsmath}   % for having text in math mode
+\usepackage{extarrows} % for Row operations arrows
+\usepackage{listings}
+\lstset{
+  frame=single,
+  breaklines=true
+}
+  
+%Following 2 lines were added to remove the blank page at the beginning
+\usepackage{atbegshi}% http://ctan.org/pkg/atbegshi
+\AtBeginDocument{\AtBeginShipoutNext{\AtBeginShipoutDiscard}}
+
+
+%New macro definitions
+\newcommand{\mydet}[1]{\ensuremath{\begin{vmatrix}#1\end{vmatrix}}}
+\providecommand{\brak}[1]{\ensuremath{\left(#1\right)}}
+\providecommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\solution}{\noindent \textbf{Solution: }}
+\newcommand{\myvec}[1]{\ensuremath{\begin{pmatrix}#1\end{pmatrix}}}
+\let\vec\mathbf
+
+\begin{document}
+
+\begin{center}
+\title{\textbf{Vector Algebra}}
+\date{\vspace{-5ex}} %Not to print date automatically
+\maketitle
+\end{center}
+\setcounter{page}{1}
+
+\section{12$^{th}$ Maths - Chapter 10}
+This is Problem-8 from Miscellaneous Exercise
+\begin{enumerate}
+\item Show that the points A$\myvec{1\\-2\\-8}$, B$\myvec{5\\0\\-2}$ and C$\myvec{11\\3\\7}$ are collinear, and
+find the ratio in which B divides AC.\\
+\solution 
+To find collinearity of the given points, we use rank method. If the rank is less than 3, then the points are said to be collinear.
+\begin{align}
+ \myvec{1&5&11\\-2&0&3\\-8&-2&7\\1&1&1} &\xleftrightarrow[]{R_2\rightarrow R_2+2R_1} \myvec{1&5&11\\0&10&25\\-8&-2&7\\1&1&1}\\
+ \label{eq:1}
+ &\xleftarrow[]{R_3\rightarrow 8R_1 + R_3} \myvec{1&5&11\\0&10&25\\0&38&95\\1&1&1}\\
+ \label{eq:2}
+ &\xleftarrow[]{R_4\rightarrow -R_1 + R_4} \myvec{1&5&11\\0&10&25\\0&38&95\\0&-4&-10}\\
+ \label{eq:3}
+ &\xleftarrow[]{R_3\rightarrow -\frac{-38R_2}{10} + R_3} \myvec{1&5&11\\0&10&25\\0&0&0\\0&-4&-10}\\
+ \label{eq:4}
+ &\xleftarrow[]{R_4\rightarrow \frac{4R_2}{10} + R_4} \myvec{1&5&11\\0&10&25\\0&0&0\\0&0&0}
+ \label{eq:5}
+\end{align}
+Therefore, the rank of the matrix is 2. Hence, the points are collinear as the rank of the matrix is less than 3.\\ \\
+
+Let us assume $B$ divides $AC$ in $k:1$ ratio. Therefore, using section formula we get:
+\begin{align}
+    \implies \Vec{B} &= \frac{k\Vec{C}+\Vec{A}}{k+1}
+    \label{eq:6}
+\end{align}
+Substituting the values of $\vec{A},\vec{B}$ and $\vec{C}$ in \eqref{eq:5}
+\begin{align}
+    \myvec{5 \\ 0 \\ -2} &= \frac{\myvec{11 \\ 3 \\ 7}k + \myvec{1 \\ -2 \\ -8}}{k+1}\\
+    \label{eq:7}
+    k\myvec{-6 \\ -3 \\ -9} &=\myvec{-4\\-2\\-6}
+    \label{eq:8}
+\end{align}
+Performing dot product on both sides by $\myvec{-4\\-2\\-6}^\top$ yields,
+\begin{align}
+    k\myvec{-6\\-3\\-9}\myvec{-4  & -2 & -6} &=\myvec{-4\\-2\\-6}\myvec{-4  & -2 & -6}\\
+\implies          k\brak{84} &=\brak{56} \\
+\implies          k &=\dfrac{2}{3}
+\end{align}
+Hence the desired ratio is $\dfrac{2}{3}$. 
+\end{enumerate}
+
+\end{document}
+
